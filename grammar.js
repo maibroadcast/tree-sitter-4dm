@@ -5,8 +5,17 @@ function caseInsensitive (keyword) {
     .join('')
   )
 }
+
+const PREC = {
+  COMMENT: 1
+};
+
 module.exports = grammar({
   name: 'fourd',
+  extras: $ => [
+    $.comment,
+    /\s/
+  ],
   rules: {
     source_code: $ => repeat($._token),
     _token: $ => choice($.c_declaration, $.array_declaration, $.comment),
@@ -88,13 +97,13 @@ module.exports = grammar({
     command_suffix: $ => /:C\d+/,
     integer_constant: $ => /\d+/,
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
-    comment: $ => token(choice(
+    comment: $ => token(prec(PREC.COMMENT, choice(
       seq('//', /.*/),
       seq(
         '/*',
         /[^*]*\*+([^/*][^*]*\*+)*/,
         '/'
       )
-    ))
+    )))
   }
 });
