@@ -377,15 +377,19 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "identifier"
-            },
-            {
-              "type": "SYMBOL",
-              "name": "variable"
+              "name": "interprocess_variable"
             },
             {
               "type": "SYMBOL",
               "name": "parameter"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "local_variable"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "identifier"
             }
           ]
         }
@@ -412,21 +416,25 @@
         }
       ]
     },
-    "variable": {
+    "interprocess_variable": {
       "type": "SEQ",
       "members": [
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "<>"
-            },
-            {
-              "type": "STRING",
-              "value": "$"
-            }
-          ]
+          "type": "STRING",
+          "value": "<>"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        }
+      ]
+    },
+    "local_variable": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$"
         },
         {
           "type": "SYMBOL",

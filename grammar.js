@@ -80,9 +80,10 @@ module.exports = grammar({
     ),
     argument_separator: $ => ';',
     declaration_argument_list: $ => seq($.declaration_argument, repeat(seq($.argument_separator, $.declaration_argument))),
-    declaration_argument: $ => seq(choice($.identifier, $.variable, $.parameter)),
+    declaration_argument: $ => seq(choice($.interprocess_variable, $.parameter, $.local_variable, $.identifier)),
     identifier: $ => seq(/[A-Za-z_]/, repeat(choice(/[A-Za-z_ 0-9]/))),
-    variable: $ => seq(choice('<>', '$'), $.identifier),
+    interprocess_variable: $ => seq('<>', $.identifier),
+    local_variable: $ => seq('$', $.identifier),
     parameter: $ => seq('$', /\d+/),
     command_suffix: $ => /:C\d+/
 
