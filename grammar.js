@@ -86,15 +86,15 @@ module.exports = grammar({
     argument_separator: $ => ';',
     declaration_argument_list: $ => seq($.declaration_argument, repeat(seq($.argument_separator, $.declaration_argument))),
     declaration_argument: $ => seq(choice($.interprocess_variable, $.parameter, $.local_variable, $.identifier)),
-    identifier: $ => seq(/[A-Za-z_]/, repeat(choice(/[A-Za-z_ 0-9]/))),
-    interprocess_variable: $ => seq('<>', $.identifier),
-    local_variable: $ => seq('$', $.identifier),
-    parameter: $ => seq('$', /\d+/),
-    command_suffix: $ => /:C\d+/,
-    storage_suffix: $ => /:\d+/,
-    integer_constant: $ => /\d+/,
-    table: $ => seq('[', $.identifier, optional($.storage_suffix), ']'),
-    field: $ => seq('[', $.identifier, optional($.storage_suffix), ']', $.identifier, optional($.storage_suffix))
+    identifier: $ => prec(9, seq(/[A-Za-z_]/, repeat(choice(/[A-Za-z_ 0-9]/)))),
+    interprocess_variable: $ => prec(6, seq('<>', $.identifier)),
+    local_variable: $ => prec(5, seq('$', $.identifier)),
+    parameter: $ => prec(1, seq('$', /\d+/)),
+    command_suffix: $ => prec(2, /:C\d+/),
+    storage_suffix: $ => prec(3, /:\d+/),
+    integer_constant: $ => prec(4, /\d+/),
+    table: $ => prec(8, seq('[', $.identifier, optional($.storage_suffix), ']')),
+    field: $ => prec(7, seq('[', $.identifier, optional($.storage_suffix), ']', $.identifier, optional($.storage_suffix)))
 
   }
 });

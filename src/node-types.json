@@ -94,6 +94,11 @@
     "fields": {}
   },
   {
+    "type": "command_suffix",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "declaration_argument",
     "named": true,
     "fields": {},
@@ -231,6 +236,11 @@
     }
   },
   {
+    "type": "storage_suffix",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "table",
     "named": true,
     "fields": {},
@@ -275,14 +285,6 @@
   },
   {
     "type": "argument_separator",
-    "named": true
-  },
-  {
-    "type": "command_suffix",
-    "named": true
-  },
-  {
-    "type": "storage_suffix",
     "named": true
   }
 ]
