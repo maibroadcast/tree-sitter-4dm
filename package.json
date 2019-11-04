@@ -8,11 +8,16 @@
     "test": "tree-sitter test"
   },
   "author": "miyako",
+  "homepage": "https://miyako.github.io/language-4dm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miyako/tree-sitter-4dm.git"
+  },
   "license": "ISC",
   "dependencies": {
     "nan": "^2.12.1"
   },
   "devDependencies": {
-      "tree-sitter-cli": "^0.15.7"
+    "tree-sitter-cli": "^0.15.7"
   }
 }
