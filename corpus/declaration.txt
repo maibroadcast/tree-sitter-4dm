@@ -1,0 +1,46 @@
+==================
+declaration
+==================
+
+c_text:C284 ($abc;abc;<>abc;$1)
+array text($array_1;3)
+array text($array_2;$size)
+
+---
+
+(source_code 
+  (c_declaration 
+    (c_type)
+    (command_suffix)
+    (c_declaration_arguments 
+      (declaration_argument_list 
+        (declaration_argument 
+          (variable 
+            (identifier )))
+        (argument_separator)
+        (declaration_argument 
+          (identifier))
+        (argument_separator)
+        (declaration_argument 
+          (variable 
+            (identifier )))
+        (argument_separator )
+        (declaration_argument 
+          (parameter )))))
+  (array_declaration 
+    (array_type )
+    (array_declaration_arguments 
+      (declaration_argument 
+        (variable 
+          (identifier )))
+      (argument_separator )))
+  (array_declaration
+    (array_type)
+    (array_declaration_arguments 
+      (declaration_argument 
+        (variable 
+          (identifier )))
+      (argument_separator)
+      (declaration_argument 
+        (variable 
+          (identifier ))))))
