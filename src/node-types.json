@@ -220,10 +220,6 @@
           "named": true
         },
         {
-          "type": "comment",
-          "named": true
-        },
-        {
           "type": "field",
           "named": true
         },
@@ -283,10 +279,6 @@
   },
   {
     "type": "command_suffix",
-    "named": true
-  },
-  {
-    "type": "comment",
     "named": true
   },
   {
