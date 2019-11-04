@@ -9,7 +9,7 @@ module.exports = grammar({
   name: 'fourd',
   rules: {
     source_code: $ => repeat($._token),
-    _token: $ => choice($.c_declaration, $.array_declaration),
+    _token: $ => choice($.c_declaration, $.array_declaration, $.comment),
     array_declaration: $ => seq($.array_type, optional($.command_suffix), $.array_declaration_arguments),
     c_declaration: $ => seq($.c_type, optional($.command_suffix), $.c_declaration_arguments),
     array_type: $ => choice(
@@ -86,6 +86,15 @@ module.exports = grammar({
     local_variable: $ => seq('$', $.identifier),
     parameter: $ => seq('$', /\d+/),
     command_suffix: $ => /:C\d+/,
-    integer_constant: $ => /\d+/
+    integer_constant: $ => /\d+/,
+    // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
+    comment: $ => token(choice(
+      seq('//', /.*/),
+      seq(
+        '/*',
+        /[^*]*\*+([^/*][^*]*\*+)*/,
+        '/'
+      )
+    ))
   }
 });

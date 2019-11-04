@@ -2,45 +2,57 @@
 declaration
 ==================
 
-c_text:C284 ($abc;abc;<>abc;$1)
+C_TEXT:C284 ($abc;abc;<>abc;$1)
 array text($array_1;3)
 array text($array_2;$size)
+
+/* blar */
+/* blar
+ * blar
+ * blar
+ */
+
+// blar blar blar
 
 ---
 
 (source_code 
   (c_declaration 
-    (c_type)
-    (command_suffix)
+    (c_type )
+    (command_suffix )
     (c_declaration_arguments 
       (declaration_argument_list 
         (declaration_argument 
-          (variable 
+          (local_variable 
             (identifier )))
-        (argument_separator)
+        (argument_separator )
         (declaration_argument 
-          (identifier))
-        (argument_separator)
+          (identifier ))
+        (argument_separator )
         (declaration_argument 
-          (variable 
+          (interprocess_variable 
             (identifier )))
         (argument_separator )
         (declaration_argument 
           (parameter )))))
   (array_declaration 
     (array_type )
+    (array_declaration_arguments
+      (declaration_argument 
+        (local_variable 
+          (identifier )))
+      (argument_separator )
+      (integer_constant )))
+  (array_declaration 
+    (array_type )
     (array_declaration_arguments 
       (declaration_argument 
-        (variable 
+        (local_variable 
           (identifier )))
-      (argument_separator )))
-  (array_declaration
-    (array_type)
-    (array_declaration_arguments 
+      (argument_separator )
       (declaration_argument 
-        (variable 
-          (identifier )))
-      (argument_separator)
-      (declaration_argument 
-        (variable 
-          (identifier ))))))
+        (local_variable 
+          (identifier )))))
+  (comment )
+  (comment )
+  (comment ))

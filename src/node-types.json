@@ -199,6 +199,10 @@
         {
           "type": "c_declaration",
           "named": true
+        },
+        {
+          "type": "comment",
+          "named": true
         }
       ]
     }
@@ -225,6 +229,10 @@
   },
   {
     "type": "command_suffix",
+    "named": true
+  },
+  {
+    "type": "comment",
     "named": true
   }
 ]
