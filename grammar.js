@@ -18,7 +18,12 @@ module.exports = grammar({
   ],
   rules: {
     source_code: $ => repeat($._token),
-    _token: $ => choice($.c_declaration, $.array_declaration, $.comment),
+    _token: $ => choice(
+      $.c_declaration,
+      $.array_declaration,
+      $.table,
+      $.field, 
+      $.comment),
     array_declaration: $ => seq($.array_type, optional($.command_suffix), $.array_declaration_arguments),
     c_declaration: $ => seq($.c_type, optional($.command_suffix), $.c_declaration_arguments),
     array_type: $ => choice(
@@ -95,7 +100,10 @@ module.exports = grammar({
     local_variable: $ => seq('$', $.identifier),
     parameter: $ => seq('$', /\d+/),
     command_suffix: $ => /:C\d+/,
+    storage_suffix: $ => /:\d+/,
     integer_constant: $ => /\d+/,
+    table: $ => seq('[', $.identifier, optional($.storage_suffix), ']'),
+    field: $ => seq('[', $.identifier, optional($.storage_suffix), ']', $.identifier, optional($.storage_suffix)),
     // http://stackoverflow.com/questions/13014947/regex-to-match-a-c-style-multiline-comment/36328890#36328890
     comment: $ => token(prec(PREC.COMMENT, choice(
       seq('//', /.*/),
