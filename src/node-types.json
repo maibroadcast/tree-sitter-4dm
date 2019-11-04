@@ -37,6 +37,10 @@
         {
           "type": "declaration_argument",
           "named": true
+        },
+        {
+          "type": "integer_constant",
+          "named": true
         }
       ]
     }
@@ -137,6 +141,11 @@
   },
   {
     "type": "identifier",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "integer_constant",
     "named": true,
     "fields": {}
   },

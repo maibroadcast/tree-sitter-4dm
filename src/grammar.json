@@ -300,8 +300,8 @@
           "type": "CHOICE",
           "members": [
             {
-              "type": "PATTERN",
-              "value": "\\d+"
+              "type": "SYMBOL",
+              "name": "integer_constant"
             },
             {
               "type": "SYMBOL",
@@ -458,6 +458,10 @@
     "command_suffix": {
       "type": "PATTERN",
       "value": ":C\\d+"
+    },
+    "integer_constant": {
+      "type": "PATTERN",
+      "value": "\\d+"
     }
   },
   "extras": [

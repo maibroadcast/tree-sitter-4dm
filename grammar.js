@@ -70,7 +70,7 @@ module.exports = grammar({
       '(',
         $.declaration_argument,
         $.argument_separator,
-        choice(/\d+/, $.declaration_argument),
+        choice($.integer_constant, $.declaration_argument),
       ')'
     ),
     c_declaration_arguments: $ => seq(
@@ -85,7 +85,7 @@ module.exports = grammar({
     interprocess_variable: $ => seq('<>', $.identifier),
     local_variable: $ => seq('$', $.identifier),
     parameter: $ => seq('$', /\d+/),
-    command_suffix: $ => /:C\d+/
-
+    command_suffix: $ => /:C\d+/,
+    integer_constant: $ => /\d+/
   }
 });
