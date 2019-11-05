@@ -306,7 +306,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "declaration_argument"
+          "name": "_declaration_argument"
         },
         {
           "type": "SYMBOL",
@@ -321,7 +321,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "declaration_argument"
+              "name": "_declaration_argument"
             }
           ]
         },
@@ -365,7 +365,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "declaration_argument"
+          "name": "_declaration_argument"
         },
         {
           "type": "REPEAT",
@@ -378,14 +378,14 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "declaration_argument"
+                "name": "_declaration_argument"
               }
             ]
           }
         }
       ]
     },
-    "declaration_argument": {
+    "_declaration_argument": {
       "type": "SEQ",
       "members": [
         {
@@ -632,12 +632,12 @@
         ]
       }
     },
-    "for_block_arguments": {
+    "_for_block_arguments": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "declaration_argument"
+          "name": "_declaration_argument"
         },
         {
           "type": "SYMBOL",
@@ -652,7 +652,7 @@
             },
             {
               "type": "SYMBOL",
-              "name": "declaration_argument"
+              "name": "_declaration_argument"
             }
           ]
         },
@@ -684,7 +684,7 @@
                 },
                 {
                   "type": "SYMBOL",
-                  "name": "declaration_argument"
+                  "name": "_declaration_argument"
                 }
               ]
             }
@@ -721,7 +721,7 @@
                     },
                     {
                       "type": "SYMBOL",
-                      "name": "declaration_argument"
+                      "name": "_declaration_argument"
                     }
                   ]
                 }
@@ -753,7 +753,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "for_block_arguments"
+                "name": "_for_block_arguments"
               },
               {
                 "type": "STRING",
@@ -785,7 +785,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "for_block_arguments"
+                "name": "_for_block_arguments"
               },
               {
                 "type": "STRING",

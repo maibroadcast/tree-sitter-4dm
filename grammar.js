@@ -75,9 +75,9 @@ module.exports = grammar({
     ),
     array_declaration_arguments: $ => seq(
       '(',
-        $.declaration_argument,
+        $._declaration_argument,
         $.argument_separator,
-        choice($.integer_constant, $.declaration_argument),
+        choice($.integer_constant, $._declaration_argument),
       ')'
     ),
     c_declaration_arguments: $ => seq(
@@ -86,8 +86,8 @@ module.exports = grammar({
       ')'
     ),
     argument_separator: $ => ';',
-    declaration_argument_list: $ => seq($.declaration_argument, repeat(seq($.argument_separator, $.declaration_argument))),
-    declaration_argument: $ => seq(choice($.interprocess_variable, $.parameter, $.local_variable, $.identifier)),
+    declaration_argument_list: $ => seq($._declaration_argument, repeat(seq($.argument_separator, $._declaration_argument))),
+    _declaration_argument: $ => seq(choice($.interprocess_variable, $.parameter, $.local_variable, $.identifier)),
     identifier: $ => prec(19, seq(/[A-Za-z_]/, repeat(choice(/[A-Za-z_ 0-9]/)))),
     interprocess_variable: $ => prec(16, seq('<>', $.identifier)),
     local_variable: $ => prec(15, seq('$', $.identifier)),
@@ -104,25 +104,25 @@ module.exports = grammar({
         /[^*]*\*+([^/*][^*]*\*+)*/,
         '/'
       ))),
-    for_block_arguments: $ => seq($.declaration_argument,
+    _for_block_arguments: $ => seq($._declaration_argument,
       $.argument_separator,
-      choice($.integer_constant, $.declaration_argument),
+      choice($.integer_constant, $._declaration_argument),
       $.argument_separator,
-      seq(optional('-'), choice($.integer_constant, $.declaration_argument)),
-      optional(seq($.argument_separator, optional('-'), choice($.integer_constant, $.declaration_argument)))
+      seq(optional('-'), choice($.integer_constant, $._declaration_argument)),
+      optional(seq($.argument_separator, optional('-'), choice($.integer_constant, $._declaration_argument)))
     ),
     for_block: $ => prec(5,
       choice(
         seq(caseInsensitive('for'),
           '(',
-            $.for_block_arguments,
+            $._for_block_arguments,
           ')',
           repeat($._token),
           caseInsensitive('end for')
         ),
         seq(caseInsensitive('boucle'),
           '(',
-            $.for_block_arguments,
+            $._for_block_arguments,
           ')',
           repeat($._token),
           caseInsensitive('fin de boucle')
