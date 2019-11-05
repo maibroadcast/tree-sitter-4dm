@@ -18,42 +18,33 @@ End for
 
 (source_code 
   (for_block 
-    (for_block_arguments 
-      (declaration_argument 
-        (local_variable 
-          (identifier )))
-      (argument_separator )
-      (integer_constant )
-      (argument_separator )
-      (integer_constant ))
+    (local_variable
+      (identifier ))
+    (argument_separator )
+    (integer_constant )
+    (argument_separator )
+    (integer_constant )
     (comment ))
   (for_block 
-    (for_block_arguments 
-      (declaration_argument 
-        (local_variable 
-          (identifier )))
-      (argument_separator )
-      (integer_constant )
-      (argument_separator )
-      (integer_constant )
-      (argument_separator )
-      (integer_constant ))
+    (local_variable 
+      (identifier ))
+    (argument_separator )
+    (integer_constant )
+    (argument_separator )
+    (integer_constant )
+    (argument_separator )
+    (integer_constant )
     (comment ))
   (for_block 
-    (for_block_arguments 
-      (declaration_argument 
-        (local_variable 
-          (identifier )))
-      (argument_separator )
-      (declaration_argument 
-        (local_variable 
-          (identifier )))
-      (argument_separator )
-      (declaration_argument 
-        (local_variable 
-          (identifier )))
-      (argument_separator )
-      (declaration_argument 
-        (local_variable 
-          (identifier ))))
+    (local_variable 
+      (identifier ))
+    (argument_separator )
+    (local_variable 
+      (identifier ))
+    (argument_separator)
+    (local_variable 
+      (identifier ))
+    (argument_separator )
+    (local_variable 
+      (identifier ))
     (comment )))

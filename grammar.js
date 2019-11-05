@@ -10,15 +10,15 @@ module.exports = grammar({
   name: 'fourd',
   rules: {
     source_code: $ => prec(7, repeat($._token)),
-    _token: $ => rec(8, choice(
+    _token: $ => prec(8, choice(
       $.comment,
       $.for_block,
-      $.c_declaration,
+      $._c_declaration,
       $.array_declaration,
       $.table,
       $.field)),
-    array_declaration: $ => seq($.array_type, optional($.command_suffix), $.array_declaration_arguments),
-    c_declaration: $ => seq($.c_type, optional($.command_suffix), $.c_declaration_arguments),
+    array_declaration: $ => seq($.array_type, optional($._command_suffix), $._array_declaration_arguments),
+    _c_declaration: $ => seq($.c_type, optional($._command_suffix), $._c_declaration_arguments),
     array_type: $ => choice(
       caseInsensitive('array object'),
       caseInsensitive('array pointer'),
@@ -73,26 +73,26 @@ module.exports = grammar({
       caseInsensitive('_o_c_alpha'),
       caseInsensitive('_o_c_entier')
     ),
-    array_declaration_arguments: $ => seq(
+    _array_declaration_arguments: $ => seq(
       '(',
         $._declaration_argument,
         $.argument_separator,
         choice($.integer_constant, $._declaration_argument),
       ')'
     ),
-    c_declaration_arguments: $ => seq(
+    _c_declaration_arguments: $ => seq(
       '(',
-        optional($.declaration_argument_list),
+        optional($._declaration_argument_list),
       ')'
     ),
     argument_separator: $ => ';',
-    declaration_argument_list: $ => seq($._declaration_argument, repeat(seq($.argument_separator, $._declaration_argument))),
+    _declaration_argument_list: $ => seq($._declaration_argument, repeat(seq($.argument_separator, $._declaration_argument))),
     _declaration_argument: $ => seq(choice($.interprocess_variable, $.parameter, $.local_variable, $.identifier)),
     identifier: $ => prec(19, seq(/[A-Za-z_]/, repeat(choice(/[A-Za-z_ 0-9]/)))),
     interprocess_variable: $ => prec(16, seq('<>', $.identifier)),
     local_variable: $ => prec(15, seq('$', $.identifier)),
     parameter: $ => prec(11, seq('$', /\d+/)),
-    command_suffix: $ => prec(12, /:C\d+/),
+    _command_suffix: $ => prec(12, /:C\d+/),
     storage_suffix: $ => prec(13, /:\d+/),
     integer_constant: $ => prec(14, /\d+/),
     table: $ => prec(18, seq('[', $.identifier, optional($.storage_suffix), ']')),
