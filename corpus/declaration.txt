@@ -17,29 +17,42 @@ array text($array_2;$size)
 ---
 
 (source_code 
-  (c_type )
-  (local_variable 
-    (identifier ))
-  (argument_separator )
-  (identifier )
-  (argument_separator )
-  (interprocess_variable 
-    (identifier ))
-  (argument_separator )
-  (parameter )
+  (c_declaration 
+    (c_type )
+    (command_suffix )
+    (c_declaration_arguments 
+      (declaration_argument_list 
+        (declaration_argument 
+          (local_variable 
+            (identifier )))
+        (argument_separator )
+        (declaration_argument 
+          (identifier ))
+        (argument_separator )
+        (declaration_argument 
+          (interprocess_variable 
+            (identifier )))
+        (argument_separator )
+        (declaration_argument 
+          (parameter )))))
   (array_declaration 
     (array_type )
-    (local_variable 
-      (identifier ))
-    (argument_separator )
-    (integer_constant ))
+    (array_declaration_arguments
+      (declaration_argument 
+        (local_variable 
+          (identifier )))
+      (argument_separator )
+      (integer_constant )))
   (array_declaration 
     (array_type )
-    (local_variable 
-      (identifier ))
-    (argument_separator )
-    (local_variable 
-      (identifier )))
+    (array_declaration_arguments 
+      (declaration_argument 
+        (local_variable 
+          (identifier )))
+      (argument_separator )
+      (declaration_argument 
+        (local_variable 
+          (identifier )))))
   (comment )
   (comment )
   (comment ))
