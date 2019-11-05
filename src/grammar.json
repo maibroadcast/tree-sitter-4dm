@@ -8,11 +8,11 @@
         "type": "REPEAT",
         "content": {
           "type": "SYMBOL",
-          "name": "_token"
+          "name": "token"
         }
       }
     },
-    "_token": {
+    "token": {
       "type": "PREC",
       "value": 8,
       "content": {
@@ -28,7 +28,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "_c_declaration"
+            "name": "c_declaration"
           },
           {
             "type": "SYMBOL",
@@ -57,7 +57,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_command_suffix"
+              "name": "command_suffix"
             },
             {
               "type": "BLANK"
@@ -70,7 +70,7 @@
         }
       ]
     },
-    "_c_declaration": {
+    "c_declaration": {
       "type": "SEQ",
       "members": [
         {
@@ -82,7 +82,7 @@
           "members": [
             {
               "type": "SYMBOL",
-              "name": "_command_suffix"
+              "name": "command_suffix"
             },
             {
               "type": "BLANK"
@@ -495,7 +495,7 @@
         ]
       }
     },
-    "_command_suffix": {
+    "command_suffix": {
       "type": "PREC",
       "value": 12,
       "content": {
@@ -771,7 +771,7 @@
                 "type": "REPEAT",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "_token"
+                  "name": "token"
                 }
               },
               {
@@ -803,7 +803,7 @@
                 "type": "REPEAT",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "_token"
+                  "name": "token"
                 }
               },
               {

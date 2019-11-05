@@ -9,16 +9,16 @@ function caseInsensitive (keyword) {
 module.exports = grammar({
   name: 'fourd',
   rules: {
-    source_code: $ => prec(7, repeat($._token)),
-    _token: $ => prec(8, choice(
+    source_code: $ => prec(7, repeat($.token)),
+    token: $ => prec(8, choice(
       $.comment,
       $.for_block,
-      $._c_declaration,
+      $.c_declaration,
       $.array_declaration,
       $.table,
       $.field)),
-    array_declaration: $ => seq($.array_type, optional($._command_suffix), $._array_declaration_arguments),
-    _c_declaration: $ => seq($.c_type, optional($._command_suffix), $._c_declaration_arguments),
+    array_declaration: $ => seq($.array_type, optional($.command_suffix), $._array_declaration_arguments),
+    c_declaration: $ => seq($.c_type, optional($.command_suffix), $._c_declaration_arguments),
     array_type: $ => choice(
       caseInsensitive('array object'),
       caseInsensitive('array pointer'),
@@ -92,7 +92,7 @@ module.exports = grammar({
     interprocess_variable: $ => prec(16, seq('<>', $.identifier)),
     local_variable: $ => prec(15, seq('$', $.identifier)),
     parameter: $ => prec(11, seq('$', /\d+/)),
-    _command_suffix: $ => prec(12, /:C\d+/),
+    command_suffix: $ => prec(12, /:C\d+/),
     storage_suffix: $ => prec(13, /:\d+/),
     integer_constant: $ => prec(14, /\d+/),
     table: $ => prec(18, seq('[', $.identifier, optional($.storage_suffix), ']')),
@@ -117,14 +117,14 @@ module.exports = grammar({
           '(',
             $._for_block_arguments,
           ')',
-          repeat($._token),
+          repeat($.token),
           caseInsensitive('end for')
         ),
         seq(caseInsensitive('boucle'),
           '(',
             $._for_block_arguments,
           ')',
-          repeat($._token),
+          repeat($.token),
           caseInsensitive('fin de boucle')
         )
       )
