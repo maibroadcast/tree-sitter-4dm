@@ -9,14 +9,14 @@ function caseInsensitive (keyword) {
 module.exports = grammar({
   name: 'fourd',
   rules: {
-    source_code: $ => repeat($._token),
-    _token: $ => choice(
+    source_code: $ => prec(7, repeat($._token)),
+    _token: $ => rec(8, choice(
       $.comment,
       $.for_block,
       $.c_declaration,
       $.array_declaration,
       $.table,
-      $.field),
+      $.field)),
     array_declaration: $ => seq($.array_type, optional($.command_suffix), $.array_declaration_arguments),
     c_declaration: $ => seq($.c_type, optional($.command_suffix), $.c_declaration_arguments),
     array_type: $ => choice(
