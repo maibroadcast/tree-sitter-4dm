@@ -11,6 +11,8 @@ module.exports = grammar({
   rules: {
     source_code: $ => repeat($._token),
     _token: $ => choice(
+      $.comment,
+      $.for_block,
       $.c_declaration,
       $.array_declaration,
       $.table,
@@ -86,15 +88,47 @@ module.exports = grammar({
     argument_separator: $ => ';',
     declaration_argument_list: $ => seq($.declaration_argument, repeat(seq($.argument_separator, $.declaration_argument))),
     declaration_argument: $ => seq(choice($.interprocess_variable, $.parameter, $.local_variable, $.identifier)),
-    identifier: $ => prec(9, seq(/[A-Za-z_]/, repeat(choice(/[A-Za-z_ 0-9]/)))),
-    interprocess_variable: $ => prec(6, seq('<>', $.identifier)),
-    local_variable: $ => prec(5, seq('$', $.identifier)),
-    parameter: $ => prec(1, seq('$', /\d+/)),
-    command_suffix: $ => prec(2, /:C\d+/),
-    storage_suffix: $ => prec(3, /:\d+/),
-    integer_constant: $ => prec(4, /\d+/),
-    table: $ => prec(8, seq('[', $.identifier, optional($.storage_suffix), ']')),
-    field: $ => prec(7, seq('[', $.identifier, optional($.storage_suffix), ']', $.identifier, optional($.storage_suffix)))
+    identifier: $ => prec(19, seq(/[A-Za-z_]/, repeat(choice(/[A-Za-z_ 0-9]/)))),
+    interprocess_variable: $ => prec(16, seq('<>', $.identifier)),
+    local_variable: $ => prec(15, seq('$', $.identifier)),
+    parameter: $ => prec(11, seq('$', /\d+/)),
+    command_suffix: $ => prec(12, /:C\d+/),
+    storage_suffix: $ => prec(13, /:\d+/),
+    integer_constant: $ => prec(14, /\d+/),
+    table: $ => prec(18, seq('[', $.identifier, optional($.storage_suffix), ']')),
+    field: $ => prec(17, seq('[', $.identifier, optional($.storage_suffix), ']', $.identifier, optional($.storage_suffix))),
+    comment: $ => prec(1,  choice(
+      seq('//', /.*/),
+      seq(
+        '/*',
+        /[^*]*\*+([^/*][^*]*\*+)*/,
+        '/'
+      ))),
+    for_block_arguments: $ => seq($.declaration_argument,
+      $.argument_separator,
+      choice($.integer_constant, $.declaration_argument),
+      $.argument_separator,
+      seq(optional('-'), choice($.integer_constant, $.declaration_argument)),
+      optional(seq($.argument_separator, optional('-'), choice($.integer_constant, $.declaration_argument)))
+    ),
+    for_block: $ => prec(5,
+      choice(
+        seq(caseInsensitive('for'),
+          '(',
+            $.for_block_arguments,
+          ')',
+          repeat($._token),
+          caseInsensitive('end for')
+        ),
+        seq(caseInsensitive('boucle'),
+          '(',
+            $.for_block_arguments,
+          ')',
+          repeat($._token),
+          caseInsensitive('fin de boucle')
+        )
+      )
+    )
 
   }
 });

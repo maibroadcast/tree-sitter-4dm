@@ -1,0 +1,59 @@
+==================
+loop
+==================
+
+For ($i;1;100)
+  // blar
+End for
+
+For ($i;100;1;-1)
+  // blar
+End for
+
+For ($i;$start;$end;$step)
+  // blar
+End for
+
+---
+
+(source_code 
+  (for_block 
+    (for_block_arguments 
+      (declaration_argument 
+        (local_variable 
+          (identifier )))
+      (argument_separator )
+      (integer_constant )
+      (argument_separator )
+      (integer_constant ))
+    (comment ))
+  (for_block 
+    (for_block_arguments 
+      (declaration_argument 
+        (local_variable 
+          (identifier )))
+      (argument_separator )
+      (integer_constant )
+      (argument_separator )
+      (integer_constant )
+      (argument_separator )
+      (integer_constant ))
+    (comment ))
+  (for_block 
+    (for_block_arguments 
+      (declaration_argument 
+        (local_variable 
+          (identifier )))
+      (argument_separator )
+      (declaration_argument 
+        (local_variable 
+          (identifier )))
+      (argument_separator )
+      (declaration_argument 
+        (local_variable 
+          (identifier )))
+      (argument_separator )
+      (declaration_argument 
+        (local_variable 
+          (identifier ))))
+    (comment )))
