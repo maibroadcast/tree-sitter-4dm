@@ -17,8 +17,8 @@ module.exports = grammar({
       $.array_declaration,
       $.table,
       $.field)),
-    array_declaration: $ => seq($.array_type, optional($.command_suffix), $._array_declaration_arguments),
-    c_declaration: $ => seq($.c_type, optional($.command_suffix), $._c_declaration_arguments),
+    array_declaration: $ => seq($.array_type, optional($.command_suffix), $.array_declaration_arguments),
+    c_declaration: $ => seq($.c_type, optional($.command_suffix), $.c_declaration_arguments),
     array_type: $ => choice(
       caseInsensitive('array object'),
       caseInsensitive('array pointer'),
@@ -73,21 +73,21 @@ module.exports = grammar({
       caseInsensitive('_o_c_alpha'),
       caseInsensitive('_o_c_entier')
     ),
-    _array_declaration_arguments: $ => seq(
+    array_declaration_arguments: $ => seq(
       '(',
-        $._declaration_argument,
+        $.declaration_argument,
         $.argument_separator,
-        choice($.integer_constant, $._declaration_argument),
+        choice($.integer_constant, $.declaration_argument),
       ')'
     ),
-    _c_declaration_arguments: $ => seq(
+    c_declaration_arguments: $ => seq(
       '(',
-        optional($._declaration_argument_list),
+        optional($.declaration_argument_list),
       ')'
     ),
     argument_separator: $ => ';',
-    _declaration_argument_list: $ => seq($._declaration_argument, repeat(seq($.argument_separator, $._declaration_argument))),
-    _declaration_argument: $ => seq(choice($.interprocess_variable, $.parameter, $.local_variable, $.identifier)),
+    declaration_argument_list: $ => seq($.declaration_argument, repeat(seq($.argument_separator, $.declaration_argument))),
+    declaration_argument: $ => seq(choice($.interprocess_variable, $.parameter, $.local_variable, $.identifier)),
     identifier: $ => prec(19, seq(/[A-Za-z_]/, repeat(choice(/[A-Za-z_ 0-9]/)))),
     interprocess_variable: $ => prec(16, seq('<>', $.identifier)),
     local_variable: $ => prec(15, seq('$', $.identifier)),
@@ -104,25 +104,25 @@ module.exports = grammar({
         /[^*]*\*+([^/*][^*]*\*+)*/,
         '/'
       ))),
-    _for_block_arguments: $ => seq($._declaration_argument,
+    for_block_arguments: $ => seq($.declaration_argument,
       $.argument_separator,
-      choice($.integer_constant, $._declaration_argument),
+      choice($.integer_constant, $.declaration_argument),
       $.argument_separator,
-      seq(optional('-'), choice($.integer_constant, $._declaration_argument)),
-      optional(seq($.argument_separator, optional('-'), choice($.integer_constant, $._declaration_argument)))
+      seq(optional('-'), choice($.integer_constant, $.declaration_argument)),
+      optional(seq($.argument_separator, optional('-'), choice($.integer_constant, $.declaration_argument)))
     ),
     for_block: $ => prec(5,
       choice(
         seq(caseInsensitive('for'),
           '(',
-            $._for_block_arguments,
+            $.for_block_arguments,
           ')',
           repeat($.token),
           caseInsensitive('end for')
         ),
         seq(caseInsensitive('boucle'),
           '(',
-            $._for_block_arguments,
+            $.for_block_arguments,
           ')',
           repeat($.token),
           caseInsensitive('fin de boucle')
