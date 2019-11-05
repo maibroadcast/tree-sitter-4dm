@@ -734,6 +734,38 @@
         }
       ]
     },
+    "for_block_begin_en": {
+      "type": "PREC",
+      "value": 6,
+      "content": {
+        "type": "PATTERN",
+        "value": "[fF][oO][rR]"
+      }
+    },
+    "for_block_begin_fr": {
+      "type": "PREC",
+      "value": 6,
+      "content": {
+        "type": "PATTERN",
+        "value": "[bB][oO][uU][cC][lL][eE]"
+      }
+    },
+    "for_block_end_en": {
+      "type": "PREC",
+      "value": 7,
+      "content": {
+        "type": "PATTERN",
+        "value": "[eE][nN][dD][  ][fF][oO][rR]"
+      }
+    },
+    "for_block_end_fr": {
+      "type": "PREC",
+      "value": 7,
+      "content": {
+        "type": "PATTERN",
+        "value": "[fF][iI][nN][  ][dD][eE][  ][bB][oO][uU][cC][lL][eE]"
+      }
+    },
     "for_block": {
       "type": "PREC",
       "value": 5,
@@ -744,8 +776,8 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "PATTERN",
-                "value": "[fF][oO][rR]"
+                "type": "SYMBOL",
+                "name": "for_block_begin_en"
               },
               {
                 "type": "STRING",
@@ -767,8 +799,8 @@
                 }
               },
               {
-                "type": "PATTERN",
-                "value": "[eE][nN][dD][  ][fF][oO][rR]"
+                "type": "SYMBOL",
+                "name": "for_block_end_en"
               }
             ]
           },
@@ -776,8 +808,8 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "PATTERN",
-                "value": "[bB][oO][uU][cC][lL][eE]"
+                "type": "SYMBOL",
+                "name": "for_block_begin_fr"
               },
               {
                 "type": "STRING",
@@ -799,8 +831,8 @@
                 }
               },
               {
-                "type": "PATTERN",
-                "value": "[fF][iI][nN][  ][dD][eE][  ][bB][oO][uU][cC][lL][eE]"
+                "type": "SYMBOL",
+                "name": "for_block_end_fr"
               }
             ]
           }

@@ -201,6 +201,22 @@
           "named": true
         },
         {
+          "type": "for_block_begin_en",
+          "named": true
+        },
+        {
+          "type": "for_block_begin_fr",
+          "named": true
+        },
+        {
+          "type": "for_block_end_en",
+          "named": true
+        },
+        {
+          "type": "for_block_end_fr",
+          "named": true
+        },
+        {
           "type": "table",
           "named": true
         }
@@ -229,6 +245,26 @@
         }
       ]
     }
+  },
+  {
+    "type": "for_block_begin_en",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "for_block_begin_fr",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "for_block_end_en",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "for_block_end_fr",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "identifier",

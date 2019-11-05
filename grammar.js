@@ -111,21 +111,25 @@ module.exports = grammar({
       seq(optional('-'), choice($.integer_constant, $.declaration_argument)),
       optional(seq($.argument_separator, optional('-'), choice($.integer_constant, $.declaration_argument)))
     ),
+    for_block_begin_en: $ => prec(6, caseInsensitive('for')),
+    for_block_begin_fr: $ => prec(6, caseInsensitive('boucle')),
+    for_block_end_en: $ => prec(7, caseInsensitive('end for')),
+    for_block_end_fr: $ => prec(7, caseInsensitive('fin de boucle')),
     for_block: $ => prec(5,
       choice(
-        seq(caseInsensitive('for'),
+        seq($.for_block_begin_en,
           '(',
             $.for_block_arguments,
           ')',
           repeat($._token),
-          caseInsensitive('end for')
+          $.for_block_end_en
         ),
-        seq(caseInsensitive('boucle'),
+        seq($.for_block_begin_fr,
           '(',
             $.for_block_arguments,
           ')',
           repeat($._token),
-          caseInsensitive('fin de boucle')
+          $.for_block_end_fr
         )
       )
     )
